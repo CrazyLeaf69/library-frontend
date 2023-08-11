@@ -48,6 +48,9 @@ export class AppComponent implements OnInit {
     const loggedIn = this.authService.isLoggedIn();
     const protectedRoute = this.protectedRoute();
     this.unauthorized = !loggedIn && protectedRoute;
+    if (!loggedIn && protectedRoute) {
+      this.authService.logout(true);
+    }
   }
 
   private protectedRoute(): boolean {
