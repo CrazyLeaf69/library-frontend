@@ -1,0 +1,136 @@
+<div
+  [ngClass]="{
+    'bg-light': theme == 'bootstrap',
+    'bg-dark': theme == 'bootstrap-dark'
+  }"
+>
+  <nav class="navbar navbar-expand-md container">
+    <button
+      class="navbar-toggler mr-2 px-1 py-0 hide-on-web"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      *ngIf="authService.user"
+    >
+      <i class="fa fa-bars"></i>
+    </button>
+    <a
+      routerLink="/"
+      class="navbar-brand hide-on-mobile"
+      [ngClass]="{
+        notLoggedIn: !authService.user
+      }"
+    >
+      Library
+    </a>
+    <ul class="navbar-nav hide-on-mobile" *ngIf="authService.user">
+      <li class="nav-item">
+        <a
+          routerLink="/books"
+          routerLinkActive="text-primary"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link"
+          >Books</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          routerLink="/books/add"
+          routerLinkActive="text-primary"
+          class="nav-link"
+          >Add Book</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          routerLink="/quotes"
+          routerLinkActive="text-primary"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link"
+          >Quotes</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          routerLink="/quotes/add"
+          routerLinkActive="text-primary"
+          class="nav-link"
+          >Add Quote</a
+        >
+      </li>
+    </ul>
+    <div class="ml-auto d-flex align-items-center">
+      <a *ngIf="!loggedIn" routerLink="login" class="btn btn-success text-white"
+        >Login</a
+      >
+      <span *ngIf="loggedIn" class="mr-2">{{
+        authService.user?.Username || username
+      }}</span>
+      <a *ngIf="loggedIn" (click)="logout()" class="btn btn-danger text-white"
+        >Logout</a
+      >
+      <button
+        class="btn ml-2 px-1 py-0"
+        style="font-size: x-large"
+        (click)="toggleTheme()"
+      >
+        <i *ngIf="theme == 'bootstrap-dark'" class="fa fa-sun"></i>
+        <i *ngIf="theme == 'bootstrap'" class="fa fa-moon"></i>
+      </button>
+    </div>
+    <div
+      class="collapse navbar-collapse"
+      id="navbarNav"
+      *ngIf="authService.user"
+    >
+      <ul class="hide-on-web navbar-nav">
+        <li class="nav-item" data-toggle="collapse" data-target="#navbarNav">
+          <a
+            routerLink=""
+            routerLinkActive="text-primary"
+            class="nav-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item" data-toggle="collapse" data-target="#navbarNav">
+          <a
+            routerLink="books"
+            routerLinkActive="text-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link"
+            >Books</a
+          >
+        </li>
+        <li class="nav-item" data-toggle="collapse" data-target="#navbarNav">
+          <a
+            routerLink="books/add"
+            routerLinkActive="text-primary"
+            class="nav-link"
+            >Add Book</a
+          >
+        </li>
+        <li class="nav-item" data-toggle="collapse" data-target="#navbarNav">
+          <a
+            routerLink="quotes"
+            routerLinkActive="text-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link"
+            >Quotes</a
+          >
+        </li>
+        <li class="nav-item" data-toggle="collapse" data-target="#navbarNav">
+          <a
+            routerLink="quotes/add"
+            routerLinkActive="text-primary"
+            class="nav-link"
+            >Add Quote</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

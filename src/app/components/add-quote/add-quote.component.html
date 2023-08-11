@@ -1,0 +1,27 @@
+<form
+  #addQuoteForm="ngForm"
+  class="submit-form"
+  (ngSubmit)="addQuoteForm.form.valid && addQuote()"
+  novalidate
+>
+  <div class="form-group">
+    <label for="quote">Quote</label>
+    <textarea
+      class="form-control"
+      name="quote"
+      [(ngModel)]="quote.value"
+      required
+      #value="ngModel"
+    ></textarea>
+    <div class="text-danger" *ngIf="value.errors && addQuoteForm.submitted">
+      <p *ngIf="value.errors['required']">Quote is required</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="quote">From (Can be a person or book)</label>
+    <input class="form-control" [(ngModel)]="quote.from" name="from" />
+  </div>
+
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>

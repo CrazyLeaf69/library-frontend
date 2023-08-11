@@ -1,0 +1,8 @@
+h1 {
+    font-size: min(10vw, 3rem);
+}
+
+h4 {
+    text-wrap: balance;
+    font-size: min(6vw, 1.5rem);
+}

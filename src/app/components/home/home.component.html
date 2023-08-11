@@ -1,0 +1,36 @@
+<div class="text-center">
+  <div *ngIf="!authService.user">
+    <h1>Welcome to the Library</h1>
+    <h4 class="font-weight-normal">
+      Create an account or sign in to access books and quotes
+    </h4>
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <a class="btn btn-primary" href="register">
+          <i class="fa fa-user-plus"></i> Register
+        </a>
+      </div>
+      <div class="col-auto">
+        <a class="btn btn-primary" href="login">
+          <i class="fa-solid fa-right-to-bracket"></i> Login
+        </a>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="authService.user">
+    <h1>Welcome {{ authService.user.Username }}</h1>
+    <h4 class="font-weight-normal">You now have access to books and quotes</h4>
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <a class="btn btn-primary" href="books">
+          <i class="fa-solid fa-book"></i> Books
+        </a>
+      </div>
+      <div class="col-auto">
+        <a class="btn btn-primary" href="quotes">
+          <i class="fa-solid fa-quote-right"></i> Quotes
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

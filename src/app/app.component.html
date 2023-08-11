@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+
+<ng-template #authorizedView>
+  <router-outlet></router-outlet>
+</ng-template>
+
+<ng-template #unauthorizedView>
+  <h1>Unauthorized Access</h1>
+  <p>You don't have permission to access this page.</p>
+  <p>Please <a routerLink="/login">log in</a> to gain access.</p>
+</ng-template>
+
+<div class="container my-3">
+  <ng-container
+    *ngIf="unauthorized; then unauthorizedView; else authorizedView"
+  />
+</div>

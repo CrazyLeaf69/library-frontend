@@ -1,0 +1,76 @@
+<div class="container" ng-controller="myCtrl">
+  <h2>Register</h2>
+  <form
+    class="submit-form"
+    name="form"
+    (ngSubmit)="registerForm.form.valid && submitForm()"
+    #registerForm="ngForm"
+    novalidate
+  >
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        class="form-control"
+        name="username"
+        [(ngModel)]="user.Username"
+        required
+        minlength="3"
+        maxlength="20"
+        #username="ngModel"
+        [ngClass]="{ 'is-invalid': registerForm.submitted && username.errors }"
+      />
+      <div
+        class="text-danger"
+        *ngIf="username.errors && registerForm.submitted"
+      >
+        <p *ngIf="username.errors['required']">Username is required</p>
+        <p *ngIf="username.errors['minlength']">
+          Username must be at least 3 characters
+        </p>
+        <p *ngIf="username.errors['maxlength']">
+          Username must be at most 20 characters
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        [(ngModel)]="user.Password"
+        required
+        minlength="6"
+        #password="ngModel"
+        [ngClass]="{ 'is-invalid': registerForm.submitted && password.errors }"
+      />
+      <div
+        class="text-danger"
+        *ngIf="password.errors && registerForm.submitted"
+      >
+        <p *ngIf="password.errors['required']">Password is required</p>
+        <p *ngIf="password.errors['minlength']">
+          Password must be at least 6 characters
+        </p>
+      </div>
+    </div>
+    <p class="{{ response.code === 409 ? 'text-danger' : 'text-success' }}">
+      {{ response.message }}
+    </p>
+    <div class="row">
+      <div class="col-auto pr-1">
+        <button type="submit" class="btn btn-primary mr-2">
+          <i class="fa fa-user-plus"></i> Register
+        </button>
+      </div>
+      <div>
+        <p class="p-0 m-0 text-li">Already have an account?</p>
+        <p class="p-0 m-0">
+          Sign in <span><a routerLink="/login">Here.</a></span>
+        </p>
+      </div>
+    </div>
+  </form>
+</div>

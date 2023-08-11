@@ -1,0 +1,55 @@
+<!-- <h1>Quotes</h1> -->
+<div class="row mb-2 justify-content-between align-items-center">
+  <div class="col-auto">
+    <h4 class="m-0">Quotes</h4>
+  </div>
+  <div class="col-auto">
+    <button
+      class="btn btn-primary"
+      [disabled]="amountOfUserCreatedQuotes >= maxQuotes"
+      (click)="navigateAdd()"
+    >
+      <i class="fa-solid fa-plus"></i> Add Quote
+    </button>
+  </div>
+</div>
+<ul class="list-group mt-3">
+  <li class="list-group-item" *ngFor="let quote of quotes">
+    <div class="row justify-content-between flex-nowrap">
+      <div class="col-10">
+        <p class="small m-0 font-italic">
+          "{{ quote.value }}"
+          <span *ngIf="quote.from !== null">- {{ quote.from }}</span>
+        </p>
+
+        <p class="small m-0">Added by: {{ quote.username }}</p>
+        <div
+          *ngIf="authService.user?.Id == quote.userId"
+          class="col-auto row py-2"
+        >
+          <a
+            class="btn btn-primary mr-2"
+            routerLink="/quotes/edit/{{ quote.id }}"
+          >
+            <i class="fa-solid fa-pencil"></i>
+          </a>
+          <button class="btn btn-danger" (click)="deleteQuote(quote.id!)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div class="col-auto">
+        <i
+          *ngIf="quote.favoriteQuoteId"
+          class="fa-solid fa-star text-warning"
+          (click)="unfavoriteQuote(quote.favoriteQuoteId!)"
+        ></i>
+        <i
+          *ngIf="!quote.favoriteQuoteId && amountOfFavorites < maxFavorites"
+          class="fa-regular fa-star"
+          (click)="favoriteQuote(quote.id!)"
+        ></i>
+      </div>
+    </div>
+  </li>
+</ul>
