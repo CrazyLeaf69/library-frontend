@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book } from '../models/book.model';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
 
-const baseUrl = 'https://localhost:7285/books';
+const baseUrl = `${environment.apiUrl}/books`;
 
 @Injectable({
   providedIn: 'root',

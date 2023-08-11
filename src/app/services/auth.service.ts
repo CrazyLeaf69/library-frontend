@@ -8,8 +8,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { TokenStorage } from '../types/tokenStorage.enum';
 import { routes } from '../app-routing.module';
+import { environment } from 'src/environments/environment';
 
-const baseUrl = 'https://localhost:7285/auth';
+const baseUrl = `${environment.apiUrl}/auth`;
 
 type Session = User | null;
 

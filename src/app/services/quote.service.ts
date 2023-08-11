@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Quote } from '../models/quote.model';
+import { environment } from 'src/environments/environment';
 
-const baseUrl = 'https://localhost:7285/quotes';
+const baseUrl = `${environment.apiUrl}/quotes`;
 
 @Injectable({
   providedIn: 'root',
